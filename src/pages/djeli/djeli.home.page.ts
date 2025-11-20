@@ -9,15 +9,14 @@ export class HomePage {
 
   constructor(page: Page) {
     this.page = page;
-    this.usernameInput = page.locator('input[name="username"]'); // Update selector as needed
-    this.passwordInput = page.locator('input[name="password"]'); // Update selector as needed
+    this.usernameInput = page.locator('input[name="username"]');
+    this.passwordInput = page.locator('input[name="password"]');
   }
 
   async goto() {
-    const username = process.env.USERNAME ?? '';
-    const password = process.env.PASSWORD ?? '';
-
-    // Add HTTP credentials
+    const username = process.env.USERNAME ?? 'smg';
+    const password = process.env.PASSWORD ?? 'welcome';
+    // HTTP credentials
     await this.page.context().setHTTPCredentials({ username, password });
     await this.page.goto('https://dev.djeli.com/#/home');
   }
@@ -26,7 +25,6 @@ export class HomePage {
     await this.usernameInput.fill(username);
     await this.passwordInput.fill(password);
 
-    // Click the sign-in button using the existing locator method
     const signInLocator = await this.findSignInLocator();
     await signInLocator.click();
   }

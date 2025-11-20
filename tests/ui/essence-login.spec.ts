@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { HomePage } from '../src/pages/essence/home.page';
-import { SignInModal } from '../src/pages/sign-in.modal';
-import { waitForVerificationCodeFromMailosaur } from '../src/pages/helpers/mailsaur';
+import { HomePage } from '../../src/pages/essence/home.page';
+import { SignInModal } from '../../src/pages/sign-in.modal';
+import { waitForVerificationCodeFromMailosaur } from '../../src/pages/helpers/mailsaur';
 
 test('open essence.com and click Sign In', async ({ page }) => {
   const serverId = process.env.MAILOSAUR_SERVER_ID ?? '';
@@ -24,7 +24,7 @@ test('open essence.com and click Sign In', async ({ page }) => {
     toAddress: testEmail,
     testStartTime,
     timeoutMs: 120000,
-    codeRegex: /<div[^>]*>\s*(\d{6})\s*<\/div>/,  // Use <div> regex here
+    codeRegex: /<div[^>]*>\s*(\d{6})\s*<\/div>/,
   });
 
   console.log('Retrieved code:', code);
